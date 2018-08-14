@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+
+group 'space.graynk'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.jetbrains', name: 'annotations', version: '16.0.+'
+}
