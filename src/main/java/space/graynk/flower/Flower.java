@@ -180,11 +180,15 @@ public class Flower<T extends Flowable> {
     /**
      * Preload the following FXMLs in the specified order. This method should be called on startup of the application
      */
-    public void preload(List<URL> nodes) {
+    public void preload(List<URL> nodes) throws InterruptedException {
         // load and cache each node from the list
-        // I assume this is called on startup, so it doesn't matter which thread I use since there's no UI
-        // and you would probably expect this method to block anyway
-        for(URL node : nodes) loadNode(node);
+        // FXMLLoader is shared, so let's use the same singlethreadexecutor to load, to avoid race conditions
+        CountDownLatch latch = new CountDownLatch(1);
+        exec.submit(() -> {
+            for(URL node : nodes) loadNode(node);
+            latch.countDown();
+        });
+        latch.await();
     }
 
     /**
