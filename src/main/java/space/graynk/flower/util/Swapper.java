@@ -11,10 +11,10 @@ public abstract class Swapper {
     // this is used to pass the data into another scene
     private final static Map<String, Object> context = new HashMap<>();
 
-    public void changeView(URL fxml) {}
+    public void changeView(URL fxml, boolean reinitialize) {}
     public void fuckGoBack() {}
 
-    public void addToContext(String key, Object value) {
+    public void putIntoContext(String key, Object value) {
         Swapper.context.put(key, value);
     }
 

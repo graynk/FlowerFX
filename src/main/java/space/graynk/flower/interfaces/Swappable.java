@@ -8,4 +8,5 @@ import space.graynk.flower.util.Swapper;
  */
 public interface Swappable {
     void setSwapper(Swapper swapper);
+    void reinitialize();
 }

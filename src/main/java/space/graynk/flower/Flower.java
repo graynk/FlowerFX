@@ -43,7 +43,7 @@ public class Flower<T extends Flowable> {
     // TODO: of course, straight up caching the nodes is ugly, it keeps the state after the user is done with them, so I
     // imply that either we __want__ to save the state, or the user will reset the node himself, but I will add the
     // flag to reload the node from scratch later. I guess that means caching the class or something like that
-    private final Map<URL, NodeWrapper> cachedNodes = new HashMap<>();
+    private final Map<URL, NodeWrapper<? extends Swappable>> cachedNodes = new HashMap<>();
     private final AnimatedTransition animation;
     private final Duration duration;
     private final LinkedList<Node> currentBranch = new LinkedList<>(); // keeps history of transitions between nodes
@@ -76,12 +76,14 @@ public class Flower<T extends Flowable> {
             @Override
             // for some reason addPane is still slow on first call for the preloaded node - 70ms on RPI 3B+
             // 10ms on following calls. And I can't offload it to other thread, so the UI _will_ freeze
-            public void changeView(URL fxml) {
+            public void changeView(URL fxml, boolean reinitialize) {
                 exec.submit(() -> {
-                    Node newView = loadNode(fxml); // load node in the background. if it's already cached -- no biggie
+                    NodeWrapper<? extends Swappable> wrapper = loadNode(fxml);
+                    Node newView = wrapper.getNode(); // load node in the background. if it's already cached -- no biggie
                     if(newView == null) return;
 
                     Platform.runLater(() -> { // set panes and animate on UI thread
+                        if(reinitialize) wrapper.getController().reinitialize();
                         mainController.addPane(newView);
                         animateNodeIntoView(newView);
                     });
@@ -109,6 +111,7 @@ public class Flower<T extends Flowable> {
             if (controller instanceof Swappable) {
                 ((Swappable) controller).setSwapper(swapper);
             }
+            // TODO: else throw exception?
             return controller;
         });
         try {
@@ -118,7 +121,7 @@ public class Flower<T extends Flowable> {
             e.printStackTrace(); // TODO: again, don't swallow the exception
         }
         mainController = loader.getController();
-        if(firstPane != null) swapper.changeView(firstPane); // set the first pane
+        if(firstPane != null) swapper.changeView(firstPane, false); // set the first pane
     }
 
     private void animateNodeIntoView(Node newView) {
@@ -159,18 +162,19 @@ public class Flower<T extends Flowable> {
         }
     }
 
-    private Node loadNode(URL fxml) {
+    private NodeWrapper<? extends Swappable> loadNode(URL fxml) {
         // if the node is cached -- return it
-        NodeWrapper wrapper = cachedNodes.get(fxml);
-        if (wrapper != null) return wrapper.getNode();
+        NodeWrapper<? extends Swappable> wrapper = cachedNodes.get(fxml);
+        if (wrapper != null) return wrapper;
         // else load it and cache it
         loader.setLocation(fxml);
         loader.setRoot(null);
         loader.setController(null);
         try {
             Node node = loader.load();
-            cachedNodes.put(fxml, new NodeWrapper(node, loader.getController()));
-            return node;
+            wrapper = new NodeWrapper(node, loader.getController()); // ehh... how do I cast/check interface?
+            cachedNodes.put(fxml, wrapper);
+            return wrapper;
         } catch (IOException e) {
             e.printStackTrace(); // TODO: god damn it
         }
@@ -210,7 +214,7 @@ public class Flower<T extends Flowable> {
      * @return Node if it has been cached, null otherwise
      */
     public Node getCachedNode(URL fxml) {
-        NodeWrapper wrapper = cachedNodes.get(fxml);
+        NodeWrapper<? extends Swappable> wrapper = cachedNodes.get(fxml);
         return wrapper == null ? null : wrapper.getNode(); }
 
     /**
