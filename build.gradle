@@ -1,16 +1,22 @@
 plugins {
     id 'java-library'
+    id 'org.openjfx.javafxplugin' version '0.0.6'
 }
 
 group 'space.graynk'
 version '1.0'
 
+sourceCompatibility = 11
+targetCompatibility = 11
 
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile group: 'org.jetbrains', name: 'annotations', version: '16.0.+'
+    implementation 'org.jetbrains:annotations:16.0.+'
 }

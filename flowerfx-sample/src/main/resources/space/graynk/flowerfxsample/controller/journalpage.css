@@ -1,0 +1,6 @@
+.label.twenty {
+    -fx-font-size: 20px;
+}
+.label.bold {
+    -fx-font-weight: bold;
+}

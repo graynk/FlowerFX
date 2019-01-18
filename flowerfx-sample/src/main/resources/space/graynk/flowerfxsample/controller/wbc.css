@@ -1,0 +1,13 @@
+.chart-series-fill {
+    -fx-fill: #10789677;
+}
+.chart-series-line {
+    -fx-stroke: #3c6478;
+}
+
+.chart-series-area-fill {
+    -fx-fill: #10789677;
+}
+.chart-series-area-line {
+    -fx-stroke: #3c6478;
+}

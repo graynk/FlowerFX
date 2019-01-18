@@ -1,0 +1,10 @@
+.statusbar {
+    -fx-background-color: linear-gradient(to bottom, derive(#093145, -20%), #093145, derive(#093145, 20%));
+    -fx-font-size: 15px;
+}
+.statuslabel {
+    -fx-font-size: 18px;
+}
+.label {
+    -fx-text-fill: #F1F3F4;
+}

@@ -1,0 +1,7 @@
+.grid {
+    -fx-background-color: radial-gradient(radius 150%, derive(#3C6478, 10%), #3C6478, derive(#3C6478, -30%));
+}
+.label {
+	-fx-text-fill: #F1F3F4;
+
+}

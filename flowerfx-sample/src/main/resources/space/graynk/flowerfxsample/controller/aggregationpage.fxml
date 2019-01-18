@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.scene.control.Button?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="480.0" stylesheets="@journalpage.css" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="space.graynk.flowerfxsample.controller.AggregationController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="53.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <LineChart fx:id="wbcChart" animated="false" createSymbols="false" horizontalGridLinesVisible="false" legendVisible="false" title="WBC" verticalGridLinesVisible="false" GridPane.rowIndex="2">
+      <xAxis>
+         <NumberAxis autoRanging="false" side="BOTTOM" tickUnit="40" upperBound="200" />
+      </xAxis>
+      <yAxis>
+         <NumberAxis side="LEFT" tickLabelsVisible="false" />
+      </yAxis>
+   </LineChart>
+   <LineChart fx:id="pltChart" animated="false" createSymbols="false" horizontalGridLinesVisible="false" legendVisible="false" title="PLT" verticalGridLinesVisible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <xAxis>
+         <NumberAxis autoRanging="false" side="BOTTOM" tickUnit="40" upperBound="200" />
+      </xAxis>
+      <yAxis>
+         <NumberAxis side="LEFT" tickLabelsVisible="false" />
+      </yAxis>
+   </LineChart>
+   <HBox alignment="CENTER_LEFT" spacing="4.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Button onAction="#openJournalAgain" prefHeight="60.0" prefWidth="125.0" styleClass="menu-jfx-button" text="Journal" />
+      <Button onAction="#openMenuAgain" prefHeight="60.0" prefWidth="125.0" styleClass="menu-jfx-button" text="Menu" />
+      <Button fx:id="leftButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" onAction="#left" prefHeight="60.0" prefWidth="100.0" styleClass="menu-jfx-button" />
+      <Button fx:id="rightButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" onAction="#right" prefHeight="60.0" prefWidth="100.0" styleClass="menu-jfx-button" />
+      <padding>
+         <Insets left="10.0" />
+      </padding>
+   </HBox>
+   <GridPane maxHeight="-Infinity" vgap="2.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <GridPane.margin>
+         <Insets />
+      </GridPane.margin>
+      <Label text="WBC" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="bold" />
+         </styleClass>
+      </Label>
+      <Label text="PLT" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="bold" />
+         </styleClass>
+      </Label>
+      <Label fx:id="wbcLabel" text="—" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="pltLabel" text="—" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label text="10^9/L" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label text="10^9/L" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="wbcLabel1" text="—" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="pltLabel1" text="—" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="wbcLabel2" text="—" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="pltLabel2" text="—" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="wbcLabel3" text="—" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="pltLabel3" text="—" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <HBox alignment="BOTTOM_LEFT" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <Label text="PLT">
+            <styleClass>
+               <String fx:value="twenty" />
+               <String fx:value="bold" />
+            </styleClass>
+         </Label>
+         <Label alignment="BOTTOM_LEFT" styleClass="bold" text="agr">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </Label>
+      </HBox>
+      <Label fx:id="pltAgrLabel" text="—" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="pltAgrLabel1" text="—" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="pltAgrLabel2" text="—" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="pltAgrLabel3" text="—" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="vAgrLabel" text="—" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label text="\%" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="vAgrLabel1" text="—" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="vAgrLabel2" text="—" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label fx:id="vAgrLabel3" text="—" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <Label text="fL" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <styleClass>
+            <String fx:value="twenty" />
+            <String fx:value="label" />
+         </styleClass>
+      </Label>
+      <HBox alignment="BOTTOM_LEFT" GridPane.rowIndex="3">
+         <Label text="V">
+            <styleClass>
+               <String fx:value="twenty" />
+               <String fx:value="bold" />
+            </styleClass>
+         </Label>
+         <Label alignment="BOTTOM_LEFT" styleClass="bold" text="agr" />
+      </HBox>
+      <padding>
+         <Insets left="10.0" right="10.0" />
+      </padding>
+   </GridPane>
+   <GridPane styleClass="grid" stylesheets="@headergrid.css" vgap="3.0" GridPane.columnSpan="2147483647">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="130.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <padding>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+      </padding>
+      <Label text="Patient ID" GridPane.halignment="LEFT" />
+      <Label text="Full Name" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+      <Label text="Analysis Date" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+      <Label fx:id="patientNumberLabel" text="—" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+      <Label fx:id="patientNameLabel" text="—" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label fx:id="analysisDateLabel" text="—" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Label text="Comment" GridPane.rowIndex="3" />
+      <Label fx:id="commentaryLabel" text="—" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+   </GridPane>
+</GridPane>
