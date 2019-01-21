@@ -65,8 +65,6 @@ You can preload heavy scenes at the start of the app using `flower.preload(list)
  
  Sample project is included. To run use:
  
-     ./gradlew build
-     cd flowerfx-sample
      ./gradlew run
 
 ## Known problems
