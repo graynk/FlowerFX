@@ -3,20 +3,21 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.6'
 }
 
-group 'space.graynk'
-version '1.0'
+allprojects {
+    group 'space.graynk'
+    version '1.0'
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
-sourceCompatibility = 11
-targetCompatibility = 11
-
-javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
-
-repositories {
-    mavenCentral()
+    repositories {
+        mavenCentral()
+    }
 }
 
 dependencies {
     implementation 'org.jetbrains:annotations:16.0.+'
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }

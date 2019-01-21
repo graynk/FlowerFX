@@ -1,26 +1,19 @@
 plugins {
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.6'
+    id 'org.openjfx.javafxplugin'
+}
+
+application {
+    mainClassName = 'space.graynk.flowerfxsample/space.graynk.flowerfxsample.Main'
 }
 
 javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-repositories {
-    mavenCentral()
-}
-
-application {
-    mainClassName = 'space.graynk.flowerfxsample/space.graynk.flowerfxsample.Main'
-    sourceCompatibility = 11
-    targetCompatibility = 11
-}
-
 
 dependencies {
-    implementation files('../build/libs/flowerfx-1.0.jar')
-    implementation 'org.jetbrains:annotations:16.0.+'
+    implementation project(':')
 }
 
 
